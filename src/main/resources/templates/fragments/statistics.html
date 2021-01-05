@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+        <script th:src="@{/js/statistics.js}"></script>
+
+    </head>
+    <body>
+        <div th:fragment="statistics">
+            <!--<div class="grey-bg container-fluid" th:fragment="statistics">-->
+            <section id="minimal-statistics">
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <h4 class="text-uppercase">INDIA STATISTICS</h4>
+                        <p>Statistics on COVID-19 in India.</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 col-12"> 
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="align-self-center">
+                                            <i class="icon-users primary font-large-2 float-left"></i>
+                                        </div>
+                                        <div class="media-body text-right">
+                                            <h3 th:text="${#numbers.formatDecimal(overall.noOfCases, 0, 'COMMA', 0, 'POINT')}"></h3>
+                                            <span>Total Cases</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="align-self-center">
+                                            <i class="icon-pie-chart warning font-large-2 float-left"></i>
+                                        </div>
+                                        <div class="media-body text-right">
+                                            <h3 th:text="${#numbers.formatDecimal(overall.noOfActiveCases, 0, 'COMMA', 0, 'POINT')}"></h3>
+                                            <span>Total Active Cases</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="align-self-center">
+                                            <i class="icon-graph success font-large-2 float-left"></i>
+                                        </div>
+                                        <div class="media-body text-right">
+                                            <h3 th:text="${#numbers.formatDecimal(overall.noOfRecoveries, 0, 'COMMA', 0, 'POINT')}"></h3>
+                                            <span>Total Recoveries</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="align-self-center">
+                                            <i class="icon-direction danger font-large-2 float-left"></i>
+                                        </div>
+                                        <div class="media-body text-right">
+                                            <h3 th:text="${#numbers.formatDecimal(overall.noOfDeaths, 0, 'COMMA', 0, 'POINT')}"></h3>
+                                            <span>Total Deaths</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="media-body text-left">
+                                            <h3 th:text="${TotalGlobalCases}"></h3>
+                                            <span>Total Cases Worldwide</span>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <i class="icon-globe primary font-large-2 float-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="media-body text-left">
+                                            <h3 th:text="${#numbers.formatDecimal(todays.noOfCases, 0, 'COMMA', 0, 'POINT')}"></h3>
+                                            <span>Today's Cases</span>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <i class="icon-rocket danger font-large-2 float-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="media-body text-left">
+                                            <h3 th:text="${#numbers.formatDecimal(todays.noOfRecoveries, 0, 'COMMA', 0, 'POINT')}"></h3>
+                                            <span>Today's Recoveries</span>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <i class="icon-shield success font-large-2 float-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="media-body text-left">
+                                            <h3 th:text="${#numbers.formatDecimal(todays.noOfDeaths, 0, 'COMMA', 0, 'POINT')}"></h3>
+                                            <span>Today's Deaths</span>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <i class="icon-support warning font-large-2 float-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <h5>Last 10 days statistics</h5>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='buttons'>
+                        <button id='btnTotalVsActive'  class='active'>
+                            Total Cases vs Active Cases
+                        </button>
+                        <button id='btnNewVsRecoveries'>
+                            New Cases vs Recovered vs Deaths
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="containerBarChart" clas="col-lg-12 col-sm-12"></div>
+                </div>
+
+            </section>
+        </div>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            function getTotallVsActiveBarData() {
+                var totalVsActiveBarData = /*[[${totalVsActiveBarData}]]*/ 'default';
+                return totalVsActiveBarData;
+            }
+
+            function getNewVsRecoveriesBarData() {
+                var newVsRecoveriesBarData = /*[[${newVsRecoveriesBarData}]]*/ 'default';
+                return newVsRecoveriesBarData;
+            }
+
+            /*]]>*/
+
+        </script>
+    </body>
+</html>

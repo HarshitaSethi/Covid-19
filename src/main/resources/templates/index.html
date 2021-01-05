@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            body{
+                background-image: url('http://localhost:9090/COVID/COVID_BACKGROUND.jpg');
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <!--<div>TODO write content</div>-->
+        <script>
+            var user_name = localStorage.getItem('WANDER_COVID_USER');
+            if (!user_name) {
+                user_name = 'GUEST';
+            }
+            window.location.href = "loadHome/" + window.btoa(user_name);
+        </script>
+    </body>
+</html>

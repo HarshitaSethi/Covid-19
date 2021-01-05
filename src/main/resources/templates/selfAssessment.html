@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/navbar :: baseHead(~{::title}, ~{::link},~{::script})">
+        <script></script>
+        <!--<script th:src="@{/js/homeInfiniteScroll.js}"></script>-->
+        <link th:href="@{/css/home.css}" rel="stylesheet" />
+
+    </head>
+    <body>
+        <div class="page-wrapper chiller-theme toggled"  id="main-wrapper">
+            <div th:insert="fragments/navbar:: navbar"></div>
+            <div class="parallax"></div>
+
+            <!-- sidebar-wrapper  -->
+            <main class="page-content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form role="form" class="form-horizontal">
+                                <div class="form-group row" th:each="item : ${symptomsData}" >
+                                    <label for="symptomsRadio" class="col-7 control-label col-form-label">
+                                        Are you having <span th:text="${item.symptom}"></span>?</label>
+                                    <div class="col-4 form-radio form-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input form-control" name="symptomsRadio" id="symptomsRadioYes" value="YES">Yes</input>
+                                        </label>
+                                        <label class="form-check-label" style="margin-left: 20px;">
+                                            <input type="radio" class="form-check-input form-control" name="symptomsRadio" id="symptomsRadioNo" value="NO">No</input>
+                                        </label> 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Register</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div th:insert="fragments/footer" id='footer'></div>
+                </div>
+            </main>
+            <!-- page-content" -->
+        </div>
+        <!-- page-wrapper -->
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+    <body>
+        <div th:fragment="dosdonts">
+            <section id="symptoms">
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <h4 class="text-uppercase">Dos and Donts</h4>
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <h5>Do's</h5>
+                        <p th:text="${dosSectionContent.header}"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" th:each="item : ${dosDontsList}" th:if="${item.category=='DO'}">
+                        <div class="card rounded-0 p-0 shadow-sm">
+                            <img th:src="@{${'http://localhost:9090/COVID/DD/' + item.imageFileName}}" class="card-img-top rounded-0"  />
+                            <div class="card-body text-center">
+                                <h6 class="card-title" th:text="${item.summary}"></h6>
+                                <p class="text-justify" th:text="${item.instructions}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <h5>Don'ts</h5>
+                        <p th:text="${dontsSectionContent.header}"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" th:each="item : ${dosDontsList}" th:if="${item.category=='DONT'}">
+                        <div class="card rounded-0 p-0 shadow-sm">
+                            <img th:src="@{${'http://localhost:9090/COVID/DD/' + item.imageFileName}}" class="card-img-top rounded-0"  />
+                            <div class="card-body text-center">
+                                <h6 class="card-title" th:text="${item.summary}"></h6>
+                                <p class="text-justify" th:text="${item.instructions}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

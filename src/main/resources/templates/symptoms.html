@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+    <body>
+        <div th:fragment="symptoms">
+            <section id="symptoms">
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <h4 class="text-uppercase">SYMPTOMS</h4>
+                        <p th:text="${sectionContent.header}"></p>
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="card rounded-0 p-0 shadow-sm"  style="background: #F5D0A9">
+                            <div class="card-body text-center">
+                                <h6  class="card-title">Most Common symptoms</h6>
+                                <ul class="card-text text-left">
+                                    <li th:each="item : ${symptomsData}" th:if="${item.category=='Most common symptoms'}">
+                                        <span th:text="${item.symptom}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="card rounded-0 p-0 shadow-sm"  style="background: #F5DA81">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">Less Common symptoms</h6>
+                                <ul class="card-text text-left">
+                                    <li th:each="item : ${symptomsData}" th:if="${item.category=='Less common symptoms'}">
+                                        <span th:text="${item.symptom}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="card rounded-0 p-0 shadow-sm"  style="background: #FAAC58">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">Serious symptoms</h6>
+                                <ul class="card-text text-left">
+                                    <li th:each="item : ${symptomsData}" th:if="${item.category=='Serious symptoms'}">
+                                        <span th:text="${item.symptom}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p th:utext="${#strings.replace(sectionContent.footer,'&#10;','</p><p>')}"></p>
+            </section>
+        </div>
+    </body>
+</html>

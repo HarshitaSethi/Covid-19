@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+    <body>
+        <div th:fragment="myths">
+            <section id="mythsSection">
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <h4 class="text-uppercase">COMMON MYTHS</h4>
+                        <hr/>
+                    </div>
+                </div>
+                <div id="mythCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators mb-0">
+                        <li th:each="item : ${mythsList}"  data-target="#mythCarousel" th:data-slide-to="${item.id}"  
+                            th:class="${item.id} == 0 ? active :''" style="background-color: black">
+                        </li>
+                    </ul>
+
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+                        <div th:each="item : ${mythsList}" class="carousel-item" th:classappend="${item.id} == 0 ? active :''"> 
+                            <div class="row">
+                                <div class="col-4">
+                                    <p  class="card-title font-weight-bold" th:text="${item.myths}"></p>
+                                    <p class="card-text text-left" th:text="${item.details}"></p>
+                                </div>    
+                                <div class="col-8">
+                                    <img th:src="@{${'http://localhost:9090/COVID/MYTHS/' + item.imageFileName}}" alt="Los Angeles" />
+                                    <!--<img src="la.jpg" alt="Los Angeles" width="1100" height="500"/>-->
+                                </div> 
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#mythCarousel" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#mythCarousel" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </section>
+        </div>
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                $('.carousel').carousel({
+                    interval: 2000
+                })
+            });
+        </script>
+    </body>
+</html>

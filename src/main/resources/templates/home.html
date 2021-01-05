@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/navbar :: baseHead(~{::title}, ~{::link},~{::script})">
+        <!--<title></title>-->
+        <script th:src="@{/js/homeInfiniteScroll.js}"></script>
+        <link th:href="@{/css/home.css}" rel="stylesheet" />
+
+    </head>
+    <body>
+        <div class="page-wrapper chiller-theme toggled"  id="main-wrapper">
+            <div th:insert="fragments/navbar:: navbar"></div>
+            <div class="parallax"></div>
+
+            <!-- sidebar-wrapper  -->
+            <main class="page-content">
+                <div class="container-fluid">
+                    <!--                    <h2>COVID-19 INDIA REPORT</h2>
+                                        <hr/>-->
+                    <div th:insert="fragments/statistics" id='statistics'></div>
+                    <div id='symptoms'></div>
+                    <div id='dosDonts'></div>
+                    <div id='myths'></div>
+                    <div id='faqs'></div>
+                    <div th:insert="contact" id='contact'></div>
+                    <!--<div th:insert="fragments/symptoms" id='symptoms'></div>-->
+
+                    <!--                    <div id="loader" class="row" >
+                                            <img th:src="@{/images/loader.gif}" class="m-auto"/>
+                                        </div>-->
+                    <div th:insert="fragments/footer" id='footer'></div>
+                </div>
+            </main>
+            <!-- page-content" -->
+        </div>
+        <!-- page-wrapper -->
+    </body>
+</html>
