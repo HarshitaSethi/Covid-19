@@ -72,20 +72,27 @@ public class ViewController {
     @GetMapping(value = "/loadHome/{user_name}")
     public ModelAndView loadHome(@PathVariable String user_name) {
 
+//        System.out.println("in home" + user_name);
         String userID = new String(Base64.getDecoder().decode(user_name));
+
+//        System.out.println(userID);
         List<UserModel> userDetails = userService.getUserDetails(userID);
 
         if (!userDetails.isEmpty()) {
+//            System.out.println("home user found");
+
             userModel = userDetails.get(0);
             this.userModel.setName(userDetails.get(0).getName());
             this.userModel.setAddress(userDetails.get(0).getAddress());
             this.userModel.setMobile(userDetails.get(0).getMobile());
         } else {
+//            System.out.println("home user not found");
             this.userModel.setAddress(userID);
             this.userModel.setMobile(userID);
             this.userModel.setName(userID);
         }
 
+//        System.out.println("home after " + userModel.getName());
         CaseStats overallCovidStats = statisticsService.getOverallCovidStats();
         CaseStats currentDateCovidStats = statisticsService.getCurrentDateCovidStats();
         List<ChartModel> totalVsActiveBarData = statisticsService.getTotalVsActiveBarData();
@@ -161,29 +168,32 @@ public class ViewController {
     @PostMapping("/register")
     public ModelAndView register(@RequestParam String name, @RequestParam String address, @RequestParam String mobile, @RequestParam String symptomsRadio) throws KeyManagementException, NoSuchAlgorithmException, IOException, SAXException, ParserConfigurationException {
 
-        System.out.println("Login Cred:" + name + ":" + address + " , " + mobile + ", " + symptomsRadio);
-
+//        System.out.println("Login Cred:" + name + ":" + address + " , " + mobile + ", " + symptomsRadio);
         List<UserModel> userDetails = userService.getUserDetails(mobile);
 
         if (userDetails.isEmpty()) {
+//            System.out.println("user details empty");
             this.userModel.setAddress(address);
             this.userModel.setMobile(mobile);
             this.userModel.setName(name);
             userService.insertUserData(userModel);
         } else {
+//            System.out.println("user found");
             this.userModel.setName(userDetails.get(0).getName());
             this.userModel.setAddress(userDetails.get(0).getAddress());
             this.userModel.setMobile(userDetails.get(0).getMobile());
         }
 
+//        System.out.println("Before" + userModel.getName());
         ModelAndView mv;
 
         if (symptomsRadio.equalsIgnoreCase("YES")) {
             mv = selfAssessment();
         } else {
-            mv = loadHome(mobile);
+            mv = loadHome(Base64.getEncoder().encodeToString(mobile.getBytes()));
         }
 
+//        System.out.println("After" + userModel.getName());
         mv.addObject("userDetails", userModel);
 
         return mv;

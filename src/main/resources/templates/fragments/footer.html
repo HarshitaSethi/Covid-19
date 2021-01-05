@@ -12,7 +12,8 @@ and open the template in the editor.
         <footer class="text-center" th:fragment="footer">
             <div class="mb-2">
                 <small>
-                    © 2020 made by - <a target="_blank" rel="noopener noreferrer" href="http://localhost:9090/about/Harshita-Sethi.pdf">
+                    © 2020 made by - 
+                    <a target="_blank" rel="noopener noreferrer"  href="javascript:document.location.href=getUrl();">
                         Harshita Sethi
                     </a>
                 </small>
@@ -21,5 +22,13 @@ and open the template in the editor.
                 </a>
             </div>
         </footer>
+        <script>
+//            alert('here');
+            function getUrl() {
+                var url = window.location.protocol + '//' + window.location.hostname + ':9090/about/Harshita-Sethi.pdf';
+//                alert(url);
+                return url;
+            }
+        </script>
     </body>
 </html>
