@@ -59,6 +59,9 @@ public class ViewController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserModel userModel;
+
     @GetMapping(value = "/")
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView();
@@ -71,9 +74,16 @@ public class ViewController {
 
         String userID = new String(Base64.getDecoder().decode(user_name));
         List<UserModel> userDetails = userService.getUserDetails(userID);
-        UserModel userData = new UserModel(userID, userID, userID);
+
         if (!userDetails.isEmpty()) {
-            userData = userDetails.get(0);
+            userModel = userDetails.get(0);
+            this.userModel.setName(userDetails.get(0).getName());
+            this.userModel.setAddress(userDetails.get(0).getAddress());
+            this.userModel.setMobile(userDetails.get(0).getMobile());
+        } else {
+            this.userModel.setAddress(userID);
+            this.userModel.setMobile(userID);
+            this.userModel.setName(userID);
         }
 
         CaseStats overallCovidStats = statisticsService.getOverallCovidStats();
@@ -82,7 +92,7 @@ public class ViewController {
         List<ChartModel> newVsRecoveriesBarData = statisticsService.getNewVsRecoveriesBarData();
 
         ModelAndView mv = new ModelAndView();
-        mv.addObject("userDetails", userData);
+        mv.addObject("userDetails", userModel);
         mv.addObject("overall", overallCovidStats);
         mv.addObject("todays", currentDateCovidStats);
         mv.addObject("TotalGlobalCases", "10+ M");
@@ -155,16 +165,18 @@ public class ViewController {
 
         List<UserModel> userDetails = userService.getUserDetails(mobile);
 
-        UserModel userData;
         if (userDetails.isEmpty()) {
-            userData = new UserModel(name, address, mobile);
-            userService.insertUserData(userData);
+            this.userModel.setAddress(address);
+            this.userModel.setMobile(mobile);
+            this.userModel.setName(name);
+            userService.insertUserData(userModel);
         } else {
-            userData = userDetails.get(0);
-
+            this.userModel.setName(userDetails.get(0).getName());
+            this.userModel.setAddress(userDetails.get(0).getAddress());
+            this.userModel.setMobile(userDetails.get(0).getMobile());
         }
 
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv;
 
         if (symptomsRadio.equalsIgnoreCase("YES")) {
             mv = selfAssessment();
@@ -172,12 +184,12 @@ public class ViewController {
             mv = loadHome(mobile);
         }
 
-        mv.addObject("userDetails", userData);
+        mv.addObject("userDetails", userModel);
 
         return mv;
     }
 
-     @GetMapping(value = "/covidSelfAssessment")
+    @GetMapping(value = "/covidSelfAssessment")
     public ModelAndView selfAssessment() {
 
         List<SymptomsModel> symptomsData = symptomsService.getSymptomsData();
@@ -186,6 +198,7 @@ public class ViewController {
         mv.addObject("symptomsData", symptomsData);
 
         mv.setViewName("selfAssessment");
+        mv.addObject("userDetails", userModel);
         return mv;
     }
 }

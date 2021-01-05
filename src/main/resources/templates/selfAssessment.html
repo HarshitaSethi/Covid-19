@@ -8,7 +8,7 @@ and open the template in the editor.
       xmlns:th="http://www.thymeleaf.org">
     <head th:insert="fragments/navbar :: baseHead(~{::title}, ~{::link},~{::script})">
         <script></script>
-        <!--<script th:src="@{/js/homeInfiniteScroll.js}"></script>-->
+        <script th:src="@{/js/selfAssessment.js}"></script>
         <link th:href="@{/css/home.css}" rel="stylesheet" />
 
     </head>
@@ -20,34 +20,47 @@ and open the template in the editor.
             <!-- sidebar-wrapper  -->
             <main class="page-content">
                 <div class="container-fluid">
-
+                    <div class="alert alert-warning" role="alert">
+                        <h4 class="alert-heading"><i class="fa fa-warning mr-1"></i>Severe symptoms</h4>
+                        <p>If you are having difficulty breathing or experiencing other
+                            severe symptoms, call 104 or 97456-97456 immediately.
+                            Advise them of your symptoms and travel history. </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <h4 class="text-uppercase">SELF ASSESSMENT</h4>
+                            <p>Please choose the symptoms you are having.</p>
+                            <hr/>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form" class="form-horizontal">
-                                <div class="form-group row" th:each="item : ${symptomsData}" >
+                            <form role="form" class="form-horizontal" id="selfAssessmentForm" onsubmit="return assessSymptoms(this);">
+                                <div class="row" th:each="item : ${symptomsData}" style="font-size: 1.2 rem">
                                     <label for="symptomsRadio" class="col-7 control-label col-form-label">
-                                        Are you having <span th:text="${item.symptom}"></span>?</label>
+                                        <span th:text="${item.symptom}"></span></label>
                                     <div class="col-4 form-radio form-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input form-control" name="symptomsRadio" id="symptomsRadioYes" value="YES">Yes</input>
+                                            <input type="radio" class="form-check-input form-control" th:name="${item.category}+${item.id}" value="YES">Yes</input>
                                         </label>
                                         <label class="form-check-label" style="margin-left: 20px;">
-                                            <input type="radio" class="form-check-input form-control" name="symptomsRadio" id="symptomsRadioNo" value="NO">No</input>
+                                            <input type="radio" class="form-check-input form-control" th:name="${item.category}+${item.id}" value="NO">No</input>
                                         </label> 
                                     </div>
                                 </div>
+                                <br/>
                                 <div class="row">
-                                    <div class="col-sm-2">
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary">Register</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn btn-primary btn-block">Get Results</button>
                                     </div>
                                 </div>
+
                             </form>
                         </div>
                     </div>
-
+                    <div class="my-5" id="assessmentResult">
+                    </div>
+                    <hr/>
                     <div th:insert="fragments/footer" id='footer'></div>
                 </div>
             </main>

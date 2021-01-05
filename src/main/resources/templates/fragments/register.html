@@ -85,7 +85,7 @@ and open the template in the editor.
             /*<![CDATA[*/
             var userDetails = /*[[${userDetails}]]*/ 'default';
 
-            if (userDetails.mobile != 'GUEST') {
+            if (userDetails.mobile != 'GUEST' && userDetails.mobile != 'null') {
                 localStorage.setItem('WANDER_COVID_USER', userDetails.mobile);
             }
 

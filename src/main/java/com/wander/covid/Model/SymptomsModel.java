@@ -13,11 +13,15 @@ public class SymptomsModel {
 
     private String category;
     private String symptom;
+    private String id;
 
-    public SymptomsModel(String category, String symptom) {
+    public SymptomsModel(String category, String symptom, String id) {
         this.category = category;
         this.symptom = symptom;
+        this.id = id;
     }
+
+    
 
     public String getCategory() {
         return category;
@@ -35,4 +39,13 @@ public class SymptomsModel {
         this.symptom = symptom;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+     
 }

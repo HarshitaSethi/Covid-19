@@ -41,7 +41,7 @@ public class DBQuery {
     }
 
     public String getSymptomsList() {
-        return "SELECT SYMPTOM, CATEGORY FROM cov_symptoms_tbl";
+        return "SELECT SYMPTOM, CATEGORY, ID FROM cov_symptoms_tbl";
     }
 
     //Myths

@@ -37,6 +37,17 @@ jQuery(function ($) {
     });
 
 
+    $('.general').click(function () {
+        var url = window.location.href;
+        if (url.indexOf('covidSelfAssessment') != -1) {
+            var user_name = localStorage.getItem('WANDER_COVID_USER');
+            if (!user_name) {
+                user_name = 'GUEST';
+            }
+            window.location.href = "loadHome/" + window.btoa(user_name);
+        }
+    });
+
 
 
 });

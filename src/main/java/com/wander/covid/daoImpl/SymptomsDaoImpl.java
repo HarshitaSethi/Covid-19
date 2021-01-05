@@ -54,7 +54,7 @@ public class SymptomsDaoImpl {
         return jdbcTemplate.query(dbQuery.getSymptomsList(), new RowMapper<SymptomsModel>() {
             @Override
             public SymptomsModel mapRow(ResultSet rs, int i) throws SQLException {
-                return new SymptomsModel(rs.getString("CATEGORY"), rs.getString("SYMPTOM"));
+                return new SymptomsModel(rs.getString("CATEGORY"), rs.getString("SYMPTOM"),rs.getString("ID"));
             }
         });
     }

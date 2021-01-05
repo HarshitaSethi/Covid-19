@@ -10,10 +10,10 @@ and open the template in the editor.
     </head>
     <body>
         <div th:fragment="faqs">
-            <section class="accordion-section clearfix mt-5" aria-label="Question Accordions">
+            <section class="accordion-section clearfix" aria-label="Question Accordions">
                 <div class="container">
 
-                    <h4 class="text-uppercase mt-3">FREQUENTLY ASKED QUESTIONS</h4>
+                    <h4 class="text-uppercase pt-5">FREQUENTLY ASKED QUESTIONS</h4>
                     <p th:text="${faqSectionContent.header}"></p>
                     <hr/>
                     <div class="row">
@@ -27,7 +27,8 @@ and open the template in the editor.
                                         </h5>
                                     </div>
 
-                                    <div  th:id="'collapse' + ${item.id}" class="collapse show" th:aria-labelledby="'heading' + ${item.id}" data-parent="#faqExample">
+                                    <!--<div  th:id="'collapse' + ${item.id}" class="collapse show" th:aria-labelledby="'heading' + ${item.id}" data-parent="#faqExample">-->
+                                    <div  th:id="'collapse' + ${item.id}" class="collapse" th:aria-labelledby="'heading' + ${item.id}" data-parent="#faqExample">
                                         <div class="card-body">
                                             <b>Answer:</b>  <span th:utext="${item.answer}"></span>
                                         </div>

@@ -5,10 +5,13 @@
  */
 package com.wander.covid.Model;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author harshita.sethi
  */
+@Component
 public class UserModel {
 
     private String name;
@@ -19,6 +22,9 @@ public class UserModel {
         this.name = name;
         this.address = address;
         this.mobile = mobile;
+    }
+
+    public UserModel() {
     }
 
     public String getName() {
