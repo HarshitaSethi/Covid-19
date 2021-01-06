@@ -8,12 +8,14 @@ and open the template in the editor.
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>COVID-19 INDIA</title>
-        <link rel="shortcut icon" href="http://localhost:9090/COVID/covid_icon.png"/>
+        <link rel="shortcut icon" th:href="@{/images/covid_icon.png}"/>
+        <!--<link rel="shortcut icon" href="http://localhost:9090/COVID/covid_icon.png"/>-->
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style>
             body{
-                background-image: url('http://localhost:9090/COVID/COVID_BACKGROUND.jpg');
+                background-image:url('../images/COVID_BACKGROUND.jpg');
+                /*background-image: url('http://localhost:9090/COVID/COVID_BACKGROUND.jpg');*/
                 background-size: cover;
             }
         </style>

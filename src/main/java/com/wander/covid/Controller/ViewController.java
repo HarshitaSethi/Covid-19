@@ -24,6 +24,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,7 +71,7 @@ public class ViewController {
     }
 
     @GetMapping(value = "/loadHome/{user_name}")
-    public ModelAndView loadHome(@PathVariable String user_name) {
+    public ModelAndView loadHome(@PathVariable String user_name, HttpServletRequest request) {
 
 //        System.out.println("in home" + user_name);
         String userID = new String(Base64.getDecoder().decode(user_name));
@@ -105,6 +106,7 @@ public class ViewController {
         mv.addObject("TotalGlobalCases", "10+ M");
         mv.addObject("totalVsActiveBarData", totalVsActiveBarData);
         mv.addObject("newVsRecoveriesBarData", newVsRecoveriesBarData);
+        mv.addObject("serverName", request.getServerName());
 
         mv.setViewName("home");
         return mv;
@@ -125,10 +127,13 @@ public class ViewController {
     }
 
     @GetMapping(value = "/covidMyths")
-    public ModelAndView myths() {
+    public ModelAndView myths(HttpServletRequest request) {
 
         List<MythsModel> mythsList = mythsService.getMythsList();
 
+        for (MythsModel mythsModel : mythsList) {
+            mythsModel.setImageFileName("http://" + request.getServerName() + ":9090/COVID/MYTHS/" + mythsModel.getImageFileName());
+        }
         ModelAndView mv = new ModelAndView();
         mv.addObject("mythsList", mythsList);
 
@@ -137,10 +142,15 @@ public class ViewController {
     }
 
     @GetMapping(value = "/covidDosAndDonts")
-    public ModelAndView dosAndDonts() {
+    public ModelAndView dosAndDonts(HttpServletRequest request) {
 
         List<DoDontModel> dosDontsList = dosDontsService.getDosDontsList();
         List<SectionContent> sectionContent = dosDontsService.getSectionContent();
+
+        for (DoDontModel doDontModel : dosDontsList) {
+            doDontModel.setImageFileName("http://" + request.getServerName() + ":9090/COVID/DD/" + doDontModel.getImageFileName());
+
+        }
 
         ModelAndView mv = new ModelAndView();
         mv.addObject("dosSectionContent", sectionContent.get(0));
@@ -166,7 +176,7 @@ public class ViewController {
     }
 
     @PostMapping("/register")
-    public ModelAndView register(@RequestParam String name, @RequestParam String address, @RequestParam String mobile, @RequestParam String symptomsRadio) throws KeyManagementException, NoSuchAlgorithmException, IOException, SAXException, ParserConfigurationException {
+    public ModelAndView register(@RequestParam String name, @RequestParam String address, @RequestParam String mobile, @RequestParam String symptomsRadio, HttpServletRequest request) throws KeyManagementException, NoSuchAlgorithmException, IOException, SAXException, ParserConfigurationException {
 
 //        System.out.println("Login Cred:" + name + ":" + address + " , " + mobile + ", " + symptomsRadio);
         List<UserModel> userDetails = userService.getUserDetails(mobile);
@@ -188,9 +198,9 @@ public class ViewController {
         ModelAndView mv;
 
         if (symptomsRadio.equalsIgnoreCase("YES")) {
-            mv = selfAssessment();
+            mv = selfAssessment(request);
         } else {
-            mv = loadHome(Base64.getEncoder().encodeToString(mobile.getBytes()));
+            mv = loadHome(Base64.getEncoder().encodeToString(mobile.getBytes()), request);
         }
 
 //        System.out.println("After" + userModel.getName());
@@ -200,7 +210,7 @@ public class ViewController {
     }
 
     @GetMapping(value = "/covidSelfAssessment")
-    public ModelAndView selfAssessment() {
+    public ModelAndView selfAssessment(HttpServletRequest request) {
 
         List<SymptomsModel> symptomsData = symptomsService.getSymptomsData();
 
@@ -209,6 +219,7 @@ public class ViewController {
 
         mv.setViewName("selfAssessment");
         mv.addObject("userDetails", userModel);
+        mv.addObject("serverName", request.getServerName());
         return mv;
     }
 }

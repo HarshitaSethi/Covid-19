@@ -34,7 +34,8 @@ and open the template in the editor.
                                     <p class="card-text text-left" th:text="${item.details}"></p>
                                 </div>    
                                 <div class="col-8">
-                                    <img th:src="@{${'http://localhost:9090/COVID/MYTHS/' + item.imageFileName}}" alt="Los Angeles" />
+                                    <img th:src="@{${item.imageFileName}}" alt="Myths" />
+                                    <!--<img th:src="@{${'http://localhost:9090/COVID/MYTHS/' + item.imageFileName}}" alt="Myths" />-->
                                     <!--<img src="la.jpg" alt="Los Angeles" width="1100" height="500"/>-->
                                 </div> 
                             </div>

@@ -8,7 +8,7 @@ and open the template in the editor.
       xmlns:th="http://www.thymeleaf.org">
     <head th:fragment="baseHead(title, links, scripts)">
         <title>COVID-19 INDIA</title>
-        <link rel="shortcut icon" href="http://localhost:9090/COVID/covid_icon.png"/>
+        <link rel="shortcut icon" th:href="@{/images/covid_icon.png}"/>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 

@@ -13,7 +13,8 @@ and open the template in the editor.
             <div class="mb-2">
                 <small>
                     © 2020 made by - 
-                    <a target="_blank" rel="noopener noreferrer"  href="javascript:document.location.href=getUrl();">
+                    <a target="_blank" th:href="@{'http://'+${serverName}+':9090/about/Harshita-Sethi.pdf'}">
+                        <!--<a target="_blank" href="javascript:document.location.href=getUrl();">-->
                         Harshita Sethi
                     </a>
                 </small>
@@ -23,10 +24,8 @@ and open the template in the editor.
             </div>
         </footer>
         <script>
-//            alert('here');
             function getUrl() {
                 var url = window.location.protocol + '//' + window.location.hostname + ':9090/about/Harshita-Sethi.pdf';
-//                alert(url);
                 return url;
             }
         </script>

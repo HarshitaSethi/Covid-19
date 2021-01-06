@@ -19,7 +19,8 @@ and open the template in the editor.
                 </div>
                 <div class="row">
                     <div class="col-5" style=""> 
-                        <img src="http://localhost:9090/COVID/covid.gif" alt="Covid-19 Alert" style="width:inherit;"/>
+                        <img th:src="@{/images/covid.gif}"  alt="Covid-19 Alert" style="width:inherit;"/>
+                        <!--<img src="http://localhost:9090/COVID/covid.gif" alt="Covid-19 Alert" style="width:inherit;"/>-->
                     </div>
 
                     <div class="col-7">

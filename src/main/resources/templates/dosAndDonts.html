@@ -26,7 +26,8 @@ and open the template in the editor.
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" th:each="item : ${dosDontsList}" th:if="${item.category=='DO'}">
                         <div class="card rounded-0 p-0 shadow-sm">
-                            <img th:src="@{${'http://localhost:9090/COVID/DD/' + item.imageFileName}}" class="card-img-top rounded-0"  />
+                            <img th:src="@{${item.imageFileName}}" class="card-img-top rounded-0"  />
+                            <!--                            <img th:src="@{${'http://localhost:9090/COVID/DD/' + item.imageFileName}}" class="card-img-top rounded-0"  />-->
                             <div class="card-body text-center">
                                 <h6 class="card-title" th:text="${item.summary}"></h6>
                                 <p class="text-justify" th:text="${item.instructions}"></p>
@@ -44,7 +45,8 @@ and open the template in the editor.
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" th:each="item : ${dosDontsList}" th:if="${item.category=='DONT'}">
                         <div class="card rounded-0 p-0 shadow-sm">
-                            <img th:src="@{${'http://localhost:9090/COVID/DD/' + item.imageFileName}}" class="card-img-top rounded-0"  />
+                            <img th:src="@{${item.imageFileName}}" class="card-img-top rounded-0"  />
+                            <!--                            <img th:src="@{${'http://localhost:9090/COVID/DD/' + item.imageFileName}}" class="card-img-top rounded-0"  />-->
                             <div class="card-body text-center">
                                 <h6 class="card-title" th:text="${item.summary}"></h6>
                                 <p class="text-justify" th:text="${item.instructions}"></p>
