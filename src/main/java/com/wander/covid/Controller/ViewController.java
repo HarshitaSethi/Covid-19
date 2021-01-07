@@ -70,11 +70,13 @@ public class ViewController {
         return mv;
     }
 
-    @GetMapping(value = "/loadHome/{user_name}")
-    public ModelAndView loadHome(@PathVariable String user_name, HttpServletRequest request) {
+    @GetMapping(value = "/loadHome")
+    public ModelAndView loadHome(@RequestParam(name = "user") String user, HttpServletRequest request) {
+//    @GetMapping(value = "/loadHome/{user_name}")
+//    public ModelAndView loadHome(@PathVariable String user_name, HttpServletRequest request) {
 
 //        System.out.println("in home" + user_name);
-        String userID = new String(Base64.getDecoder().decode(user_name));
+        String userID = new String(Base64.getDecoder().decode(user));
 
 //        System.out.println(userID);
         List<UserModel> userDetails = userService.getUserDetails(userID);

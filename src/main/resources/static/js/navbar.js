@@ -44,7 +44,8 @@ jQuery(function ($) {
             if (!user_name) {
                 user_name = 'GUEST';
             }
-            window.location.href = "loadHome/" + window.btoa(user_name);
+            window.location.href = "loadHome?user=" + window.btoa(user_name);
+//            window.location.href = "loadHome/" + window.btoa(user_name);
         }
     });
 

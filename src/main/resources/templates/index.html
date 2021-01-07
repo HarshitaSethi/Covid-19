@@ -14,7 +14,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style>
             body{
-                background-image:url('../images/COVID_BACKGROUND.jpg');
+                background-image:url('images/COVID_BACKGROUND.jpg');
                 /*background-image: url('http://localhost:9090/COVID/COVID_BACKGROUND.jpg');*/
                 background-size: cover;
             }
@@ -27,7 +27,8 @@ and open the template in the editor.
             if (!user_name) {
                 user_name = 'GUEST';
             }
-            window.location.href = "loadHome/" + window.btoa(user_name);
+            window.location.href = "loadHome?user=" + window.btoa(user_name);
+//            window.location.href = "loadHome/" + window.btoa(user_name);
         </script>
     </body>
 </html>

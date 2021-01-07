@@ -448,6 +448,7 @@ body {
     color: #b8bfce;
 }
 
+
 .page-wrapper.chiller-theme.toggled #close-sidebar {
     color: #bdbdbd;
 }
@@ -487,4 +488,19 @@ body {
 
 .chiller-theme .sidebar-footer>a:last-child {
     border-right: none;
+}
+
+
+
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li.active a{
+    color: #b8bfce;
+}
+
+.chiller-theme .sidebar-wrapper ul li.active a i{
+    color: #16c7ff;
+    text-shadow:0px 0px 10px rgba(22, 199, 255, 0.5);
+}
+
+.sidebar-wrapper .sidebar-menu .header-menu span.active {
+    color: #b8bfce;
 }

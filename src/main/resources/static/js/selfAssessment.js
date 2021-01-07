@@ -5,6 +5,7 @@
  */
 
 function assessSymptoms(form) {
+
     console.log('in function');
     var values = $(form).serializeArray();
     console.log(values);
@@ -63,3 +64,9 @@ function assessSymptoms(form) {
     $('#assessmentResult').html(result);
     return false;
 }
+
+
+$(document).ready(function () {
+    $('#covidMenu').addClass('active');
+    $('#selfAssessmentMenu').addClass('active');
+});
