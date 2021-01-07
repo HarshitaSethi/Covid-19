@@ -36,7 +36,6 @@ jQuery(function ($) {
         $(".page-wrapper").addClass("toggled");
     });
 
-
     $('.general').click(function () {
         var url = window.location.href;
         if (url.indexOf('covidSelfAssessment') != -1) {
@@ -47,6 +46,9 @@ jQuery(function ($) {
             window.location.href = "loadHome?user=" + window.btoa(user_name);
 //            window.location.href = "loadHome/" + window.btoa(user_name);
         }
+
+        $('.chiller-theme .sidebar-wrapper .sidebar-menu ul li').removeClass('active');
+        $(this).parent().addClass('active');
     });
 
 

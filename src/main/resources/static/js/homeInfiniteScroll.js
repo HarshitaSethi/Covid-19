@@ -79,20 +79,20 @@ $(document).ready(function () {
                 $('.chiller-theme .sidebar-wrapper .sidebar-menu ul li').removeClass('active');
                 $('#faqsMenu').addClass('active');
             }
-        } else if (isScrolledIntoView('#symptoms')) {
-            if (!$('#symptomsMenu').attr('class') || $('#symptomsMenu').attr('class').indexOf('active') == -1) {
+        } else if (isScrolledIntoView('#myths')) {
+            if (!$('#mythsMenu').attr('class') || $('#mythsMenu').attr('class').indexOf('active') == -1) {
                 $('.chiller-theme .sidebar-wrapper .sidebar-menu ul li').removeClass('active');
-                $('#symptomsMenu').addClass('active');
+                $('#mythsMenu').addClass('active');
             }
         } else if (isScrolledIntoView('#dosDonts')) {
             if (!$('#dosDontsMenu').attr('class') || $('#dosDontsMenu').attr('class').indexOf('active') == -1) {
                 $('.chiller-theme .sidebar-wrapper .sidebar-menu ul li').removeClass('active');
                 $('#dosDontsMenu').addClass('active');
             }
-        } else if (isScrolledIntoView('#myths')) {
-            if (!$('#mythsMenu').attr('class') || $('#mythsMenu').attr('class').indexOf('active') == -1) {
+        } else if (isScrolledIntoView('#symptoms')) {
+            if (!$('#symptomsMenu').attr('class') || $('#symptomsMenu').attr('class').indexOf('active') == -1) {
                 $('.chiller-theme .sidebar-wrapper .sidebar-menu ul li').removeClass('active');
-                $('#mythsMenu').addClass('active');
+                $('#symptomsMenu').addClass('active');
             }
         } else if (isScrolledIntoView('#statistics')) {
             if (!$('#statisticsMenu').attr('class') || $('#statisticsMenu').attr('class').indexOf('active') == -1) {
